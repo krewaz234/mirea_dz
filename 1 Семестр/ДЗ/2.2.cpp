@@ -11,7 +11,7 @@ int main()
     double a, x;
     cout << "Введите значения аргументов a и x: ";
     cin >> a >> x;
-    if (x == 0 || a - pow(x, 2) < 0)
+    if ((abs(x) < 1 && x == 0) || (a - pow(x, 2) < 0 && abs(x) >= 1))
         cout << "Функция не существует" << endl;
     else
     {
