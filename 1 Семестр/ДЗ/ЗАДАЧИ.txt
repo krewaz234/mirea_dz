@@ -1,0 +1,298 @@
+//////////////////////////////////////////////
+/* ЗАДАЧА #1 */
+
+#include <iostream>
+
+#define L 45
+
+using namespace std;
+
+int main()
+{
+    int v, t;
+    cin >> v;
+    cout << v * t % L;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #2 */
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    cout << n / 100;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #3 */
+
+#include <iostream>
+
+int main()
+{
+    int d, s;
+    std::cin >> d >> s;
+    std::cout << s / d;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #4 */
+
+#include <iostream>
+
+int main()
+{
+    int n;
+    std::cin >> n;
+    std::cout << n / 10 % 10;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #5 */
+
+#include <iostream>
+
+int main()
+{
+    double x, y;
+    std::cin >> x >> y;
+    if ((x >= y || -x >= y) && pow(x, 2) - 2 <= y)
+        std::cout << "YES\n";
+    else
+        std::cout << "NO\n";
+}
+//////////////////////////////////////////////
+/* ЗАДАЧА #6 */
+
+#include <iostream>
+
+int main()
+{
+    int a, b;
+    std::cin >> a >> b;
+    int counter = 0;
+    //подсчет чисел ведется включая границы
+    for (int i = a; i <= b; i += 3, ++counter);
+    std::cout << counter;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #7 */
+
+#include <iostream>
+
+int main()
+{
+    int km;
+    std::cin >> km;
+    if (km % 2)
+        std::cout << (km - 5) / 2 + 1;
+    else
+        std::cout << "Такого дня нет";
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #8 */
+
+#include <iostream>
+
+int main()
+{
+    int counter = 0, a;
+    std::cin >> a;
+    while (a != 0)
+    {
+        counter += (a % 19 == 0);
+        std::cin >> a;
+    }
+    std::cout << counter;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #9 */
+
+#include <iostream>
+
+#define ll long long
+
+ll fact(ll n)
+{
+    if (n == 0)
+        return 1;
+    return n * fact(n - 1);
+}
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    std::cout << "Введите целое число: ";
+    ll n;
+    std::cin >> n;
+    std::cout << "Его факториал равен: " << fact(n) << std::endl;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #10 */
+
+#include <iostream>
+
+void rec(int n, int cur = 1)
+{
+    if (cur == n)
+    {
+        std::cout << "YES\n";
+        exit(0);
+    }
+    if (cur > n)
+        return;
+    rec(n, cur + 8);
+    rec(n, cur + 9);
+}
+
+int main()
+{
+    int n;
+    std::cin >> n;
+    rec(n);
+    std::cout << "NO\n";
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #11 */
+
+#include <iostream>
+#include <ctime>
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    srand(time(0));
+    int n;
+    std::cin >> n;
+    int* arr = new int[n];
+    //заполняем массив рандомными числами от 0 до 999
+    std::cout << "Сгенерированный массив: ";
+    for (int i = 0; i < n; ++i)
+    {
+        arr[i] = rand() % 1000;
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+    int sum = 0;
+    for (int i = 0; i < n; ++i)
+    {
+        if (arr[i] % 7 == 0)
+            sum += arr[i];
+    }
+    delete arr;
+    std::cout << "Сумма элементов кратных 7: " << sum << std::endl;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #12 */
+
+#include <iostream>
+#include <ctime>
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    srand(time(0));
+    int n;
+    std::cin >> n;
+    int* arr = new int[n];
+    //заполняем массив рандомными числами от 0 до 999
+    std::cout << "Сгенерированный массив: ";
+    for (int i = 0; i < n; ++i)
+    {
+        arr[i] = rand() % 1000;
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+    int max = -1;
+    for (int i = 0; i < n; ++i)
+    {
+        if (arr[i] % 3 == 0 && max < arr[i])
+            max = arr[i];
+    }
+    delete arr;
+    if (max != -1)
+        std::cout << "Максимальный элемент кратный 3: " << max << std::endl;
+    else
+        std::cout << "В последовательности нет чисел кратных 3" << std::endl;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #13 */
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+    int** matr = new int* [n];
+    for (int i = 0; i < n; ++i)
+        matr[i] = new int[m];
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < m; ++j)
+            cin >> matr[i][j];
+    }
+    int sum = 0;
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < m; ++j)
+        {
+            if (matr[i][j] % 7 == 0)
+                sum += matr[i][j];
+        }
+    }
+    cout << sum;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #14 */
+
+#include <iostream>
+#include <string>
+
+#define SYMB '*'
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    string s;
+    cout << "Введите строку (содержащую только знаки и латинские буквы):" << endl;
+    getline(cin, s);
+    auto p = s.find(SYMB);
+    while (p != string::npos)
+    {
+        s.erase(p, 1);
+        p = s.find(SYMB);
+    }
+    cout << "Очищенная строка: " << s;
+}
+
+//////////////////////////////////////////////
+/* ЗАДАЧА #15 */
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    string fname, lname, otch;
+    cin >> fname >> lname >> otch;
+    cout << (char)toupper(fname[0]) << "." << (char)toupper(lname[0]) << "." << (char)toupper(otch[0]) << "." << endl;
+}
