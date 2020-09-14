@@ -3,20 +3,20 @@
 using namespace std;
 
 /**< ПЛОЩАДЬ КРУГА */
-double circle_area(double radius)
+unsigned double circle_area(unsigned double radius)
 {
     return acos(-1)*pow(radius, 2);
 }
 
 /**< ПЛОЩАДЬ ПРЯМОУГОЛЬНИКА */
-double rectangle_area(double width, double height)
+unsigned double rectangle_area(unsigned double width, unsigned double height)
 {
     return width * height;
 }
 
 /**< ПЛОЩАДЬ ТРЕУГОЛЬНИКА ЧЕРЕЗ 3 СТОРОНЫ */
 /**< ВОЗВРАЩАЕТ -1 ЕСЛИ ТАКОГО ТРЕУГОЛЬНИКА НЕ СУЩЕСТВУЕТ */
-double triangle_area(double side1, double side2, double side3)
+double triangle_area(unsigned double side1, unsigned double side2, unsigned double side3)
 {
     if (side1 + side2 <= side3 || side1 + side3 <= side2 || side2 + side3 <= side1)
         return -1;
@@ -24,7 +24,7 @@ double triangle_area(double side1, double side2, double side3)
 }
 
 /**< ПЛОЩАДЬ ТРЕУГОЛЬНИКА ЧЕРЕЗ ОСНОВАНИЕ И ВЫСОТУ */
-double triangle_area(double side, double height)
+unsigned double triangle_area(unsigned double side, unsigned double height)
 {
     return 0.5*side*height;
 }
