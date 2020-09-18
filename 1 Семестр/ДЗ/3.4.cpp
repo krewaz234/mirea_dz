@@ -1,18 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
-#include <cstdlib>
+#include <algorithm>
 
 using namespace std;
-
-bool is_digit(string str)
-{
-    string nums = "0123456789";
-    for (int i = 0; i < str.length(); ++i)
-        if (nums.find(str[i]) == string::npos)
-            return false;
-    return true;
-}
 
 int main()
 {
@@ -27,7 +18,7 @@ int main()
         if (is_char)
             fout << chars[rand() % 26] << " ";
         else
-            fout << rand() % 10 << " ";
+            fout << rand() % 100 << " ";
     }
     fout.close();
     cout << "Случайный файл сгенерирован" << endl;
@@ -36,7 +27,7 @@ int main()
     {
         string c;
         fin >> c;
-        if (is_digit(c))
+        if (all_of(c.cbegin(), c.cend(), [](char c){return isdigit(c);}))
             cout << c << endl;
     }
     fin.close();
