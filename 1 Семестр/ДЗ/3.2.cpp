@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#define err 1e-5
 
 using namespace std;
 
@@ -9,15 +10,15 @@ int main()
     cout << "Введите S, m, n: ";
     double S, m, n;
     cin >> S >> m >> n;
-    for (int i = 0; i < 101; ++i)
+    double L = 0, R = 100;
+    while (R - L > err)
     {
-        double r = (double)i/100.0;
-        if (m == (S*r*pow(1 + r, n)) / (12*(pow(1 + r, n) - 1)))
-        {
-            cout << "p = " << i;
-            exit(0);
-        }
+        double now = (L + R) / 2.0, r = now / 100.0;
+        if (((S * r * pow(1 + r, n)) / (12 * (pow(1 + r, n) - 1))) > m)
+            R = now - err;
+        else
+            L = now;
     }
-    cerr << "Значение не найдено. Проверьте правильность введенных данных.";
+    cout << "p = " << L;
     return 0;
 }
