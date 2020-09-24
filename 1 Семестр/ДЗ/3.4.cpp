@@ -14,7 +14,7 @@ int main()
     for (int i = 0; i < 20; ++i)
     {
         bool is_char = rand() % 2;
-        char chars[] = {"QWERTYUIOPASDFGHJKLZXCVBNM"};
+        string chars = "QWERTYUIOPASDFGHJKLZXCVBNM";
         if (is_char)
             fout << chars[rand() % 26] << " ";
         else
