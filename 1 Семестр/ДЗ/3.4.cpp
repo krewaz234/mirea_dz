@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
-#include <algorithm>
+
+#define MAX_NUM 100
 
 using namespace std;
 
@@ -16,19 +17,25 @@ int main()
         bool is_char = rand() % 2;
         string chars = "QWERTYUIOPASDFGHJKLZXCVBNM";
         if (is_char)
-            fout << chars[rand() % 26] << " ";
+            fout << chars[rand() % chars.length()] << " ";
         else
-            fout << rand() % 100 << " ";
+            fout << rand() % MAX_NUM << " ";
     }
     fout.close();
     cout << "Случайный файл сгенерирован" << endl;
     ifstream fin("file.txt");
-    while (!fin.eof())
+    string str;
+    while (fin >> str)
     {
-        string c;
-        fin >> c;
-        if (all_of(c.cbegin(), c.cend(), [](char c){return isdigit(c);}))
-            cout << c << endl;
+        bool isnumber = true;
+        for (char c: str)
+            if (c < '0' || c > '9')
+            {
+                isnumber = false;
+                break;
+            }
+        if (isnumber)
+            cout << str << " ";
     }
     fin.close();
     return 0;
