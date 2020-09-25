@@ -19,14 +19,9 @@ int main()
     }
     fout.close();
     ifstream fin("file.txt");
-    int sum = 0;
-    while (true)
-    {
-        int n;
-        fin >> n;
-        if (fin.eof()) break;
+    int sum = 0, n;
+    while (fin >> n)
         sum += n;
-    }
     fin.close();
     cout << "Сумма чисел в файле: " << sum << endl;
     return 0;
