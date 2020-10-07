@@ -3,7 +3,27 @@
 
 using namespace std;
 
-const map<char, int> n = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
+//преобразование одной римской цифры в арабское число
+int char_to_number(char c)
+{
+    switch (c)
+    {
+    case 'I':
+        return 1;
+    case 'V':
+        return 5;
+    case 'X':
+        return 10;
+    case 'L':
+        return 50;
+    case 'C':
+        return 100;
+    case 'D':
+        return 500;
+    case 'M':
+        return 1000;
+    }
+}
 
 int main()
 {
@@ -11,14 +31,22 @@ int main()
     cout << "Введите число в римской системе счисления: ";
     string s;
     cin >> s;
-    for (char &i: s) i = toupper(i);
-    int result = 0;
+    for (int i = 0; i < s.length(); ++i)
+        s[i] = toupper(s[i]); //все символы делаем большими
+    int result = 0; //конечный результат
     for (size_t i = 0; i < s.length() - 1; ++i)
     {
-        int n1 = n.find(s[i])->second, n2 = n.find(s[i + 1])->second;
-        result += n1 * (1 - 2*(n1 < n2));
+        int n1 = char_to_number(s[i]), n2 = char_to_number(s[i + 1]); //2 соседних цифры
+        //любое римское число переводится по правилу:
+        //если перед большей цифрой стоит меньшая - мы ее отнимаем
+        //если перед меньшей цифрой стоит большая - мы ее прибавляем
+        //как пример: IV - 4; VI - 6
+        if (n1 < n2)
+            result -= n1;
+        else
+            result += n1;
     }
-    result += n.find(s.back())->second;
+    result += char_to_number(s.back()); //последняя цифра всегда прибавляется
     cout << "Его представление в десятичном виде: " << result << endl;
     return 0;
 }
