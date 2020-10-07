@@ -1,3 +1,4 @@
+//та же самая задача с шариками, но через рекурсию
 #include <iostream>
 
 using namespace std;
