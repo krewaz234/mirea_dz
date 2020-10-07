@@ -1,4 +1,5 @@
 //та же самая задача с шариками, но через рекурсию
+//(оптимизировал поиск использованных чисел)
 #include <iostream>
 
 using namespace std;
@@ -6,7 +7,7 @@ using namespace std;
 size_t counter = 0;
 void rec(int *balls, size_t k = 0)
 {
-    if (k == 10)
+    if (k == 10) //терминальное условие (рекурсия закончила свою работу, нужно выполнить проверки и вернуться назад)
     {
         for (int i = 0; i < 10; ++i)
         {
@@ -18,18 +19,14 @@ void rec(int *balls, size_t k = 0)
         }
         return;
     }
+    
+    //used[i] будет равно true если число i присутствует в массиве на текущем шаге рекурсии, иначе false
+    bool used[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    for (int i = 0; i < 10; ++i)
+        used[balls[i]] = true;
     for (int i = 0; i < 10; ++i)
     {
-        bool f = false;
-        for (int j = 0; j < k; ++j)
-        {
-            if (i == balls[j])
-            {
-                f = true;
-                break;
-            }
-        }
-        if (!f)
+        if (!used[i]) //если число еще не использовали, то берем его и переходим на след. шаг рекурсии
         {
             balls[k] = i;
             rec(balls, k + 1);
@@ -43,7 +40,7 @@ int main()
     int *balls = new int[10];
     for (int i = 0; i < 10; ++i)
         balls[i] = -1;
-    rec(balls);
+    rec(balls); //понеслась
     cout << counter;
     return 0;
 }
