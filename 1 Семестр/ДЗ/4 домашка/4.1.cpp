@@ -2,17 +2,20 @@
 #include <fstream>
 #include <ctime>
 
+//хз зачем это здесь
 #define NUMS 3
 
 using namespace std;
 
 int main()
 {
+    //обновляем сид рандома, чтобы при каждом новом запуске программы были разные рандомные числа
     srand(time(0));
     setlocale(LC_ALL, "Russian");
     ofstream fout("file.txt");
     for (int i = 0; i < NUMS; ++i)
     {
+        //случайное число в диапазоне от 0 до 10
         int n = rand() % 10;
         fout << n << endl;
         cout << "В файл записано число " << n << endl;
