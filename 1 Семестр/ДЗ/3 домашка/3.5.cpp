@@ -11,8 +11,6 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     setlocale(LC_ALL, "Russian");
-    //обновляем ядро псевдорандома
-    srand(time(0));
 
     string s;
     cout << "Введите строку:" << endl;
