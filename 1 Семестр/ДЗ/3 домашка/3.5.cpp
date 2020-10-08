@@ -15,6 +15,12 @@ int main()
     string s;
     cout << "Введите строку:" << endl;
     getline(cin, s);
+    
+    //удаление небуквенных символов
+    for (size_t i = 0; i < s.length(); ++i)
+        if (!isalpha(s[i]))
+            s.erase(i--, 1);
+    
     //сортировка
     for (size_t i = 0; i < s.length() - 1; ++i)
     {
@@ -30,14 +36,11 @@ int main()
     }
 
     //удаление повторяющихся символов
+    //делается строго после сортировки
     for (size_t i = 0; i < s.length() - 1; ++i)
         if (s[i] == s[i + 1])
             s.erase(i--, 1);
-
-    //удаление небуквенных символов
-    for (size_t i = 0; i < s.length(); ++i)
-        if (!isalpha(s[i]))
-            s.erase(i--, 1);
+    
     cout << "Преобразованная строка: " << s << endl;
     return 0;
 }
