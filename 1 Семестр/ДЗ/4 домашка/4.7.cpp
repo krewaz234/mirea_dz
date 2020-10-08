@@ -2,7 +2,7 @@
 
 using namespace std;
 
-size_t s1 = 0, s2 = 0;
+size_t s1 = 0, s2 = 0; //начальные значения
 
 size_t random1()
 {
@@ -16,6 +16,7 @@ size_t random2()
 
 int main()
 {
+    //просто выводим 10 случайных чисел
     for (int i = 0; i < 10; ++i)
     {
         cout << random1() << " " << random2() << endl;
