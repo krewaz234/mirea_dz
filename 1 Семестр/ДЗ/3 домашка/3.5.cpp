@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <algorithm>
+#include <string>
 #include <windows.h>
 
 using namespace std;
