@@ -15,8 +15,6 @@ int main()
     for (int i = 0; i < 13; ++i)
     {
         //тип данных WORD это то же самое что и unsigned short
-        //если не понимаете что за вопросительные знаки с двоеточиями почитайте:
-        //https://ravesli.com/urok-41-sizeof-zapyataya-i-uslovnyj-ternarnyj-operator/#toc-2
         WORD stripeColor = (i % 2) ? (RED) : (WHITE);
         if (i >= 0 && i <= 5)
         {
