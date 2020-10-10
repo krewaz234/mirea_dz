@@ -6,12 +6,14 @@ size_t s1 = 0, s2 = 0; //начальные значения
 
 size_t random1()
 {
-    return s1 = (37*s1 + 3) % 64;
+    s1 = (37*s1 + 3) % 64;
+    return s1;
 }
 
 size_t random2()
 {
-    return s2 = (25173 * s2 + 13849) % 65537;
+    s2 = (25173 * s2 + 13849) % 65537;
+    return s2;
 }
 
 int main()
