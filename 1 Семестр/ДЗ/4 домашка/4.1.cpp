@@ -2,9 +2,6 @@
 #include <fstream>
 #include <ctime>
 
-//хз зачем это здесь
-#define NUMS 3
-
 using namespace std;
 
 int main()
