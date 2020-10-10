@@ -21,6 +21,7 @@ void resheto(size_t n)
 	for (size_t i = 2; i < n; ++i)
 		if (arr[i])
 			cout << i << " ";
+        delete[] arr;
 }
 
 int main()
