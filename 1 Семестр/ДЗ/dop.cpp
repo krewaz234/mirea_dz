@@ -28,7 +28,7 @@ int main()
     long long N;
     cin >> N;
     cout << "Введите 3N чисел (" << 3*N << " чисел): ";
-    long long arr[3*N];
+    double arr[3*N];
     for (int i = 0; i < 3*N; ++i)
         cin >> arr[i];
     cout << "Q = " << get_Q(arr, 3*N);
