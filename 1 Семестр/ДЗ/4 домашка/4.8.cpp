@@ -13,9 +13,11 @@ int main()
 	double A[AN][AM] = { {5, 2, 0, 10}, {3, 5, 2, 5}, {20, 0, 0, 0} };
 	double B[BN][BM] = { {1.20, 0.50}, {2.80, 0.40}, {5.0, 1.0}, {2.0, 1.5} };
 	int ans[AN][BM];
+	//присваиваем конечный результат нулевой матрице
 	for (size_t i = 0; i < AN; ++i)
 		for (size_t j = 0; j < BM; ++j)
 			ans[i][j] = 0;
+	//перемножаем матрицы, ответ записываем в ans
 	for (size_t i = 0; i < AN; ++i)
 		for (size_t j = 0; j < BM; ++j)
 			for (size_t k = 0; k < AM; ++k)
