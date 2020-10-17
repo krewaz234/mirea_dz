@@ -1,62 +1,52 @@
 #include <iostream>
-#include <ctime>
-#include <algorithm>
 #include <string>
 #include <windows.h>
 
 using namespace std;
 
-//моя функция, которая проверяет является ли символ буквой или нет
-//на вход подается какой то символ char c, который нужно проверить
-//функция возвращает true если символ является буквой и false, если не буква
-//реализация:
-//в строке letters хранятся все буквы, которые можно использовать для составления строки
-//если мы смогли найти символ c в этой строке, то нужно вернуть true, иначе false
-//выражение мы записали именно так, потому что функция find для строк возвращает первую позицию,
-//где она нашла какой то символ/строку, а если она ничего не нашла, то она возвращает число string::npos
-bool is_alpha(char c)
+//ввод строки и сортировка по итератору
+//любой язык, любая символьная последовательность
+void t5()
 {
-    string letters = "QWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuiopasdfghjklzxcvbnmйцукенгшщзхъфывапролджэячсмитьбю";
-    return (letters.find(c) != string::npos);
-}
-
-
-int main()
-{
-    //устанавливаем полную поддержку русского языка
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-    setlocale(LC_ALL, "Russian");
-
-    string s;
-    cout << "Введите строку:" << endl;
-    getline(cin, s);
-    
-    //удаление небуквенных символов
-    for (size_t i = 0; i < s.length(); ++i)
-        if (!is_alpha(s[i])) //использую свою функцию вместо встроенной потому что в некоторых случаях она может не работать
-            s.erase(i--, 1);
-    
-    //сортировка
-    for (size_t i = 0; i < s.length() - 1; ++i)
+    string str;
+    cin>>str;
+    int temp, i=0, a[str.size()]={};
+    string::iterator it = str.begin();
+    while(it != str.end() && i!=str.size())
     {
-        for (size_t j = i + 1; j < s.length(); ++j)
+        a[i]=*it;
+        it++;
+        i++;
+    }
+    for (int i = 0; i <str.size(); i++)
+    {
+        for (int j = 0; j < str.size() - i; j++)
         {
-            if (s[i] > s[j])
+            if (a[j] > a[j + 1])
             {
-                char temp = s[i];
-                s[i] = s[j];
-                s[j] = temp;
+                temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
             }
         }
     }
+    cout<<"Вывод с повторяющимися символами: "<<endl;
+    for (int i = 0; i <str.size(); i++)
+    {
+        printf( "%c ", a[i]);
+    }
+    cout<<endl<<"Вывод без повторяющихся символов: "<<endl;
+    for (int i = 0; i < sizeof(a) / sizeof(int); ++ i)
+    {
+        if (i > 0 && a[i] == a[i - 1]) continue;
+        printf( "%c ", a[i]);
+    }
+}
 
-    //удаление повторяющихся символов
-    //делается строго после сортировки
-    for (size_t i = 0; i < s.length() - 1; ++i)
-        if (s[i] == s[i + 1])
-            s.erase(i--, 1);
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     
-    cout << "Преобразованная строка: " << s << endl;
-    return 0;
+	cout << "t5\n"; t5();
 }
