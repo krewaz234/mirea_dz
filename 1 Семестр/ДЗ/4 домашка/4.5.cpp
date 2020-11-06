@@ -2,8 +2,8 @@
 #include <cmath>
 
 //можете попробовать поиграться с размерами, на больших выглядит красиво
-#define WINDOW_W 50
-#define WINDOW_H 20
+#define WINDOW_W 81
+#define WINDOW_H 31
 //вычислять число пи таким образом точнее, потому что его вычисляет сам компьютер
 #define PI acos(-1)
 
@@ -12,22 +12,27 @@ using namespace std;
 //перевод y-координаты графика y=sin(x) y-координате в матрице из char
 int y_coord_to_pixel(double y)
 {
-    //как я вывел эту формулу?
-    //высота нашей матрицы пополам - это точка 0 по оси y
-    //к ней мы прибавляем округленную (по понятным причинам) высоту деленную на 2
-    //(от высоты отнимаю 2, иначе происходит выход за границы матрицы)
-    //и умноженную на y-координату а-ля "растяжение до нужных размеров"
+    //вершины
+    if (fabs(y) >= 0.9)
+    {
+        if (y >= 0.99)
+            return 0;
+        if (y <= -0.99)
+            return WINDOW_H - 1;
+        if (y >= 0.9)
+            return 1;
+        if (y <= -0.9)
+            return WINDOW_H - 2;
+    }
 
-    //эта вся ерундистика отнимается от высоты матрицы потому что y координата у нас идет вниз
-    //(просто потому что у матрицы нет y координаты, это строка)
-    return WINDOW_H - (WINDOW_H / 2 + round(y * floor(double(WINDOW_H-2) / 2.0)));
+    return WINDOW_H - 1 - ((WINDOW_H - 1) / 2 + round((double(WINDOW_H - 1) / 2.0)*y));
 }
 
 //просто отрисовка координатных осей
 void draw_axis(char **window)
 {
-    int center_x = WINDOW_W / 2;
-    int center_y = WINDOW_H / 2;
+    int center_x = (WINDOW_W - 1) / 2;
+    int center_y = (WINDOW_H - 1) / 2;
 
     window[0][center_x] = '^';
     window[0][center_x + 1] = 'y';
