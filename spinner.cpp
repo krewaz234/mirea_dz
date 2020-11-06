@@ -44,23 +44,22 @@ void F4()
 {
     int n;
     cin >> n;
-    int k1[9], k2[9];
+    int k[9];
     for (int i = 0; i < 9; ++i)
-        k1[i] = k2[i] = 0;
+        k[i] = 0;
     for (int i = 0; i < n; ++i)
     {
         int a;
         cin >> a;
         if (a <= 36)
-            ++k1[a / 4 - (a % 4 == 0)];
+            ++k[a / 4 - (a % 4 == 0)];
         else
-            ++k2[a / 2 - (a % 2) - 19];
+            ++k[(54-a) / 2];
     }
-    int ans = 0;
     int maxlen = 0, _len = 0;
     for (int i = 0; i < 9; ++i)
     {
-        if (k1[i] != 4)
+        if (k[i] != 6)
         {
             maxlen = max(_len, maxlen);
             _len = 0;
@@ -68,18 +67,7 @@ void F4()
         }
         ++_len;
     }
-    ans = max(ans, maxlen);
-    maxlen = _len = 0;
-    for (int i = 0; i < 9; ++i)
-    {
-        if (k2[i] != 2)
-        {
-            maxlen = max(maxlen, _len);
-            _len = 0;
-            continue;
-        }
-    }
-    cout << max(ans, maxlen);
+    cout << max(maxlen, _len);
 }
 
 void F5()
